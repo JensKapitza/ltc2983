@@ -14,7 +14,7 @@ license-file = "LICENSE"
 
 [dependencies]
 bytebuffer = "2.1.1"
-embedded-hal = "=1.0.0-alpha.9"
+embedded-hal = "1.0.0"
 fixed = "1.21.0"
 serde = { version = "1.0.152", features = ["derive"] }
 thiserror = "1.0.38"
