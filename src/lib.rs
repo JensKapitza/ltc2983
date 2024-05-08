@@ -632,7 +632,7 @@ pub struct LTC2983<SPI> {
     spi_device: SPI,
 }
 
-impl<SPI> LTC2983<SPI> where SPI: SpiDevice, SPIBus: SpiBus {
+impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
     pub fn new(spi_device: SPI) -> Self {
         LTC2983 { spi_device }
     }
