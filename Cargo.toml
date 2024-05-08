@@ -3,7 +3,7 @@ name = "ltc2983"
 description = "A create to provide an implementation of the communication with the `LTC2983` (Multi Sensor High Accuracy Digital Temperature Measurement System)"
 repository = "https://github.com/JensKapitza/ltc2983"
 homepage = "https://github.com/JensKapitza/ltc2983"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2021"
 authors = [ "ju6ge <judge@felixrichter.tech>", "kapitza <kapitza@bluepair.de>" ]
 #license = "EUPL-1.2"
@@ -14,7 +14,7 @@ license-file = "LICENSE"
 
 [dependencies]
 bytebuffer = "2.1.1"
-embedded-hal = "=1.0.0-alpha.9"
+embedded-hal = "1"
 fixed = "1.21.0"
 serde = { version = "1.0.152", features = ["derive"] }
 thiserror = "1.0.38"
