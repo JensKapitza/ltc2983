@@ -834,19 +834,18 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
 
         while r < rounds {
             self.start_conversion(channel)?;
-            
+             
             for i in 1..3 {
-                if !self.status()?.done {
+
+                if !self.status().unwrap().done() {
                     thread::sleep(Duration::from_millis(100));
                 }
             }
 
-            if !self.status()?.done {
-                break;
+            if  !self.status().unwrap().done() {
+                return LTC2983Error::AvgCalculationError;
             }
-
-
-                         
+            
             let mut was_error = false;
             let mut v: f32 = 0.;
             match self.read_temperature(channel) {
