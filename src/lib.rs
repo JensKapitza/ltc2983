@@ -843,7 +843,7 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
             }
 
             if  !self.status().unwrap().done() {
-                return LTC2983Error::AvgCalculationError;
+                return Err(LTC2983Error::AvgCalculationError);
             }
             
             let mut was_error = false;
