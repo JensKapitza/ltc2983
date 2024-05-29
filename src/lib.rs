@@ -34,7 +34,7 @@
 //!
 //!```
 
-use std::{convert::TryInto};
+use std::{convert::TryInto,thread};
 
 use bytebuffer::ByteBuffer;
 use embedded_hal::spi::{SpiDevice, SpiBus};
@@ -833,7 +833,16 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
 
         while r < rounds {
             self.start_conversion(channel)?;
-            while !self.status()?.done {}
+            let mut errorState = rounds * 5 + 5;
+            while !self.status()?.done {
+                errorState -= 1;
+                thread::sleep(Duration::from_millis(100));
+                if errorState <= 0 {
+                    break;
+                }
+            }
+            
+             
             let mut was_error = false;
             let mut v: f32 = 0.;
             match self.read_temperature(channel) {
@@ -851,6 +860,8 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
                     was_error = true;
                 },
             }
+
+                
             if !was_error {
                 values.push(v);
                 r += 1;
