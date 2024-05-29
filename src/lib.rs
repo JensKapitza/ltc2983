@@ -36,6 +36,7 @@
 
 use std::{convert::TryInto,thread};
 
+use std::time::{Duration};
 use bytebuffer::ByteBuffer;
 use embedded_hal::spi::{SpiDevice, SpiBus};
 use fixed::{FixedU32, types::extra::{U10, U20}, FixedI32};
