@@ -837,7 +837,6 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
             
             for i in 1..3 {
                 if !self.status()?.done {
-                    println!("{:?}",self.status().unwrap());
                     thread::sleep(Duration::from_millis(100));
                 }
             }
