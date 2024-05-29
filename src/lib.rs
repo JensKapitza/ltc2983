@@ -835,15 +835,14 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
         while r < rounds {
             self.start_conversion(channel)?;
             
-            for i in 1..(3+rounds) {
-                
-                if !self.status()?.done() {
+            for i in 1..3 {
+                if !self.status()?.done {
                     println!("{:?}",self.status().unwrap());
                     thread::sleep(Duration::from_millis(100));
                 }
             }
 
-            if !self.status()?.done() {
+            if !self.status()?.done {
                 break;
             }
 
