@@ -836,7 +836,7 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
             self.start_conversion(channel)?;
             
             for i in 1..(3+rounds) {
-                println!("{}",self.status().unwrap());
+                println!("{:?}",self.status().unwrap());
                 
                 if !self.status()?.done() {
                     thread::sleep(Duration::from_millis(100));
