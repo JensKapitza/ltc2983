@@ -827,12 +827,12 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
         }).collect()
     }
 
+    
     ///do multiple rounds of conversion for a channel then calculate the average of the temperatures read out
     pub fn get_temperature_avg(&mut self, channel: &LTC2983Channel, rounds: usize) -> Result<f32, LTC2983Error<SPI::Error>> {
         let mut values = Vec::new();
-        let mut r = 0;
 
-        while r < rounds {
+        for r in 0..rounds {
             self.start_conversion(channel)?;
              
             for i in 1..3 {
@@ -867,7 +867,6 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
                 
             if !was_error {
                 values.push(v);
-                r += 1;
             } else {
                 return Err(LTC2983Error::AvgCalculationError);
             }
