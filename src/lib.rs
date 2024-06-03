@@ -868,6 +868,8 @@ impl<SPI> LTC2983<SPI> where SPI: SpiDevice {
             if !was_error {
                 values.push(v);
                 r += 1;
+            } else {
+                return Err(LTC2983Error::AvgCalculationError);
             }
         }
 
